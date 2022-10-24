@@ -51,31 +51,32 @@ const LandingPage = () => {
                             }}
                         >
                             <TextField 
-                            id="email"
-                            label="Email Address"
-                            variant="outlined"
-                            autoComplete="email"
-                            margin="normal"
-                            autoFocus
-                            required
-                            fullWidth
+                                id="email"
+                                label="Email Address"
+                                variant="outlined"
+                                autoComplete="email"
+                                margin="normal"
+                                autoFocus
+                                required
+                                fullWidth
                             />
                             <TextField 
-                            id="password"
-                            label="Password"
-                            variant="outlined"
-                            autoComplete="current-password"
-                            margin="normal"
-                            required
-                            fullWidth
+                                id="password"
+                                label="Password"
+                                variant="outlined"
+                                autoComplete="current-password"
+                                margin="normal"
+                                required
+                                fullWidth
                             />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
                             />
                             <Box style={{ marginTop: '20px' }}>
-                                <Button
-                                    type="submit" variant="contained" sx={{ marginRight: '1.5em' }}>Sign Up</Button>
+                                <Button type="submit" variant="contained" sx={{ marginRight: '1.5em' }}>
+                                    Sign Up
+                                </Button>
                                 <Button type="submit" variant="outlined">Log In</Button>
                             </Box>
                         </Stack>
