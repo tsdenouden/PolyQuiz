@@ -3,7 +3,7 @@ frontend built with React & MaterialUI
 folder structure:
 
 ## src
-* Index.js - renders react app, browser router, MUI theme & CSS baseline
+* Index.js - renders react app, sets up browser router, redux provider & MUI theme
 * App.js - routes for / and /home/* 
 * theme.js - MUI theme
 
@@ -13,3 +13,6 @@ folder structure:
 * hub (home/hub) - this is the timeline/media page showing the latest or trending study sets.
 * study (home/study) - study set creation/editor page.
 * profile (home/profile) - user profile with basic account details & showcase of user's study sets.
+
+### redux
+* configured store & some redux reducers

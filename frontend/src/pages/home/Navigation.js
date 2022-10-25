@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { BottomNavigation } from '@mui/material'
-import { BottomNavigationAction } from '@mui/material'
+import BottomNavigation from '@mui/material/BottomNavigation'
+import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClassIcon from '@mui/icons-material/Class'
 import ForumIcon from '@mui/icons-material/Forum'

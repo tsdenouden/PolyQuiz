@@ -1,0 +1,12 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.profileMenu {
+    display: flex;
+    margin-top: 12px;
+}

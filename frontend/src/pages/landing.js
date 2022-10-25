@@ -1,3 +1,8 @@
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateName, updatePassword } from '../redux/user'
+
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -7,13 +12,19 @@ import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import { useNavigate } from 'react-router-dom'
+import InputAdornment from '@mui/material/InputAdornment'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 
 const LandingPage = () => {
     const navigate = useNavigate()
+    const [passwordVisible, setPasswordVisibility] = useState(false)
+    const { username, password } = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(updateName(e.target.user.value))
+        dispatch(updatePassword(e.target.password.value))
         navigate('home/hub')
     }
 
@@ -58,10 +69,10 @@ const LandingPage = () => {
                         }}
                     >
                         <TextField 
-                            id="email"
-                            label="Email Address"
+                            id="user"
+                            label="Username"
                             variant="outlined"
-                            autoComplete="email"
+                            autoComplete="off"
                             margin="normal"
                             autoFocus
                             required
@@ -71,10 +82,17 @@ const LandingPage = () => {
                             id="password"
                             label="Password"
                             variant="outlined"
+                            type={passwordVisible? "text": "password"}
                             autoComplete="current-password"
                             margin="normal"
                             required
                             fullWidth
+                            InputProps={{
+                                endAdornment: 
+                                <InputAdornment position="end">
+                                    <VisibilityIcon onClick={() => {setPasswordVisibility(!passwordVisible)}} />
+                                </InputAdornment>,
+                            }}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
