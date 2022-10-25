@@ -7,8 +7,16 @@ import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
+    const navigate = useNavigate()
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        navigate('home/hub')
+    }
+
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
             <Grid 
@@ -41,7 +49,7 @@ const LandingPage = () => {
                     <Stack
                         component='form'
                         noValidate
-                        // onSubmit={handleSubmit}
+                        onSubmit={handleSubmit}
                         spacing={2} 
                         sx={{
                             textAlign: 'center',
