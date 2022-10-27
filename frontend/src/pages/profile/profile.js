@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
+import StudySets from '../../components/studySets/studySets'
+
 import styles from './Profile.module.css'
 
 const Profile = () => {
@@ -29,17 +31,14 @@ const Profile = () => {
         setEdit(false)
     }
 
-
-    // TODO: RENDER USER'S STUDY SETS
-
     return (
         <Box className={styles.profileContainer}>
             {!edit && 
-            <Box>
+            <Box className={styles.profileView}>
                 <Typography variant="h4" component="h4">
                 {username}'s study sets
                 </Typography> 
-                <Box className={styles.profileMenu}>
+                <Box className={styles.profileActions}>
                     <Button 
                         variant="contained" 
                         sx={{ mr: 2 }}
@@ -51,6 +50,7 @@ const Profile = () => {
                         Share study sets
                     </Button>
                 </Box>
+                <StudySets setProp='author' mustInclude={username} />
             </Box>}
 
             {edit && 

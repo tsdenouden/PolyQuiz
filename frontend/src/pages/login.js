@@ -23,9 +23,16 @@ const LandingPage = () => {
     // login
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(updateName(e.target.user.value))
-        dispatch(updatePassword(e.target.password.value))
-        navigate('load')
+
+        const username = e.target.user.value
+        const password = e.target.password.value
+        if (username.length >= 3 && password.length >= 3) {
+            dispatch(updateName(username))
+            dispatch(updatePassword(password))
+            navigate('/load')
+        } else {
+            alert('Invalid credentials')
+        }
     }
 
     return (

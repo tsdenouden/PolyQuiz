@@ -6,9 +6,12 @@
     margin-top: 60px;
 }
 
-.profileMenu {
+.profileView {
     display: flex;
-    margin-top: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .profileEdit {
@@ -17,4 +20,9 @@
     justify-content: center;
     align-items: center;
     width: 20%;
+}
+
+.profileActions {
+    display: flex;
+    margin-top: 12px;
 }

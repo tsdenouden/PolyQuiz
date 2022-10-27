@@ -8,14 +8,19 @@ folder structure:
 * theme.js - MUI theme
 
 #### pages
-* login.js - landing page with sign up/in form. Redirects user to /load (load.js) to fetch study terms.
+* landing.js - landing page, didn't do anything here yet
+* login.js - sign up/in page. After signing in, redirects user to /load (load.js) to fetch study terms.
 * load.js - Fetches latest study terms in the background while playing a loading screen. Redirects user to home/hub afterwards.
-* home - routes for hub, profile & study pages with a navigation bar to travel between those pages.
-* hub (home/hub) - this is the timeline/media page showing the latest or trending study sets.
-* study (home/study) - study set creation/editor page.
-* profile (home/profile) - user profile with basic account details & showcase of user's study sets.
+* home.js - routes for hub, profile & study pages with a navigation bar to travel between those pages.
+* hub.js (home/hub) - this is the timeline/media page showing the latest or trending study sets.
+* study.js (home/study) - study set creation/editor page.
+* profile.js (home/profile) - user profile with basic account details & showcase of user's study sets.
 
 #### redux
 * store.js - redux store
 * sets.js - slice for study sets
 * user.js - slice for user account info
+
+#### components
+* redirect.js - redirect user to landing page
+* studySets.js - renders an array of study sets as a list of card components

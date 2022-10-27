@@ -1,0 +1,19 @@
+.studyContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.termCard {
+    display: flex;
+    align-items: flex-start;
+    background-color: rgb(33, 28, 29);
+    border-radius: 0.375rem;
+    padding: 20px;
+}
+
+.cardTextField {
+    margin-inline: 5px;
+}
