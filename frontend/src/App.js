@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
-import LandingPage from './pages/landing'
+import LoginPage from './pages/login'
+import LoadingScreen from './pages/load'
 import Home from './pages/home/home'
 
 import '@fontsource/roboto/300.css'
@@ -11,7 +12,8 @@ import '@fontsource/roboto/700.css'
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/init" element={<LoadingScreen />} />
       <Route path="/home/*" element={<Home />} />
     </Routes>
   )

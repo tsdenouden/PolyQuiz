@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateName, updatePassword } from '../redux/user'
 
 import Box from '@mui/material/Box'
@@ -18,14 +18,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 const LandingPage = () => {
     const navigate = useNavigate()
     const [passwordVisible, setPasswordVisibility] = useState(false)
-    const { username, password } = useSelector(state => state.user)
     const dispatch = useDispatch()
 
+    // login
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(updateName(e.target.user.value))
         dispatch(updatePassword(e.target.password.value))
-        navigate('home/hub')
+        navigate('init')
     }
 
     return (

@@ -10,3 +10,11 @@
     display: flex;
     margin-top: 12px;
 }
+
+.profileEdit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}

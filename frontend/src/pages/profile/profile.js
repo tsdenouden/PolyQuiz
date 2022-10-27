@@ -11,26 +11,51 @@ import styles from './Profile.module.css'
 
 const Profile = () => {
     const { username } = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
-    // boolean to keep track of whether user is viewing profile in edit mode
-    // also used for conditionally rendering components for profile editing
+    // check if user is editing profile
     const [edit, setEdit] = useState(false)
 
-    // user can edit username while editing profile, keep track of changes to username
+    // 2 way data binding with text field to get new username
     const [newUsername, setNewUsername] = useState(username)
 
     const handleNewUsername = (e) => {
         setNewUsername(e.target.value)
     }
 
+    // confirm name change
+    const submitNewUsername = () => {
+        dispatch(updateName(newUsername))
+        setEdit(false)
+    }
+
+
+    // TODO: RENDER USER'S STUDY SETS
+
     return (
         <Box className={styles.profileContainer}>
-            {!edit && <Typography variant="h4" component="h4">
+            {!edit && 
+            <Box>
+                <Typography variant="h4" component="h4">
                 {username}'s study sets
-            </Typography> }
+                </Typography> 
+                <Box className={styles.profileMenu}>
+                    <Button 
+                        variant="contained" 
+                        sx={{ mr: 2 }}
+                        onClick={() => {setEdit(!edit)}}
+                    >
+                        Edit profile
+                    </Button>
+                    <Button variant="contained">
+                        Share study sets
+                    </Button>
+                </Box>
+            </Box>}
 
             {edit && 
-            <TextField 
+            <Box className={styles.profileEdit}>
+                <TextField 
                 id="newUsername"
                 label="Set Username"
                 value={newUsername}
@@ -39,21 +64,13 @@ const Profile = () => {
                 margin="normal"
                 autoComplete="off"
                 autoFocus
-                sx={{ width: '40%' }}
-            />}
-
-            {!edit &&
-            <Box className={styles.profileMenu}>
-                <Button 
-                    variant="contained" 
-                    sx={{ mr: 2 }}
-                    onClick={() => {setEdit(!edit)}}
-                >
-                    Edit profile
-                </Button>
-                <Button variant="contained">
-                    Share study sets
-                </Button>
+                sx={{ width: '100%' }}
+                />
+                <Box sx={{ marginTop: '15px;' }}>
+                    <Button variant="contained" onClick={submitNewUsername}>
+                        Confirm
+                    </Button>
+                </Box>
             </Box>}
         </Box>
     )

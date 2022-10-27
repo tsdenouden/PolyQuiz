@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Card from "@mui/material/Card"
@@ -10,7 +13,24 @@ import SearchIcon from '@mui/icons-material/Search'
 
 import styles from './Hub.module.css'
 
-const Hub = ({studySets}) => {
+const Hub = () => {
+    const navigate = useNavigate()
+
+    // get study sets & initially hide it
+    let setsVisible = false
+    const studySets = useSelector(state => state.studySets.sets)
+
+    // before showing the list of study sets,
+    // check if it actually has stuff
+    // by checking if first entry has a title
+    if (studySets[0].title) setsVisible = true
+
+    useEffect(() => {
+        // redirect user to login page if study sets is empty
+        if (!studySets[0].title) navigate('/') 
+    }, [navigate, studySets])
+
+    // query study sets
     const [query, setQuery] = useState('')
 
     const handleQueryChange = (e) => {
@@ -25,7 +45,7 @@ const Hub = ({studySets}) => {
             <Typography variant="h6" component="h6" color="primary.main">
                 Latest Study Sets
             </Typography>
-
+        
             <Box className={styles.hubSearchContainer}>
                 <SearchIcon sx={{ mr:1, my: 1.5 }}/>
                 <TextField 
@@ -41,7 +61,7 @@ const Hub = ({studySets}) => {
                 />
             </Box>
             <Stack className={styles.hubStack}>
-                {studySets.filter(set =>
+                {setsVisible && studySets.filter(set =>
                     set.title.toLowerCase().includes(query.toLowerCase())).map(set =>
                     <Card key={set.id} className={styles.hubCard}>
                         <CardHeader 
