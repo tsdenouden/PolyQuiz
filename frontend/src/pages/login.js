@@ -25,7 +25,7 @@ const LandingPage = () => {
         e.preventDefault()
         dispatch(updateName(e.target.user.value))
         dispatch(updatePassword(e.target.password.value))
-        navigate('init')
+        navigate('load')
     }
 
     return (

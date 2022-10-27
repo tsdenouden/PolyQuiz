@@ -2,13 +2,13 @@ frontend built with React & MaterialUI
 
 folder structure:
 
-## src
-* Index.js - renders react app, sets up browser router, redux provider & MUI theme
-* App.js - routes for / and /home/* 
+# src
+* Index.js - renders react app. sets up browser router, redux provider & MUI theme
+* App.js - routes for / and /home/*
 * theme.js - MUI theme
 
 #### pages
-* login.js - landing page with sign up/in form. Redirects user to /init (loadingScreen.js) to fetch study terms.
+* login.js - landing page with sign up/in form. Redirects user to /load (load.js) to fetch study terms.
 * load.js - Fetches latest study terms in the background while playing a loading screen. Redirects user to home/hub afterwards.
 * home - routes for hub, profile & study pages with a navigation bar to travel between those pages.
 * hub (home/hub) - this is the timeline/media page showing the latest or trending study sets.
@@ -17,5 +17,5 @@ folder structure:
 
 #### redux
 * store.js - redux store
-* sets.js - reducer for study sets
-* user.js - reducer for user account info
+* sets.js - slice for study sets
+* user.js - slice for user account info
