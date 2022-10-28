@@ -1,4 +1,4 @@
-frontend built with React & MaterialUI
+frontend built with React, Redux & MaterialUI
 
 folder structure:
 

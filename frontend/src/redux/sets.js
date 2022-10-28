@@ -10,7 +10,8 @@ export const setSlice = createSlice({
             state.sets = action.payload
         },
         addSet: (state, action) => {
-            state.sets.concat(action.payload)
+            action.payload.id = state.sets.length+1
+            state.sets = state.sets.concat(action.payload)
         }
     }
 })
