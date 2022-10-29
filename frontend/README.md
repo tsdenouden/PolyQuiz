@@ -14,6 +14,7 @@ folder structure:
 * home.js - routes for hub, profile & study pages with a navigation bar to travel between those pages.
 * hub.js (home/hub) - this is the timeline/media page showing the latest or trending study sets.
 * study.js (home/study) - study set viewer & editor page.
+* quiz.js (home/quiz) - quiz game page
 * profile.js (home/profile) - user profile with basic account details & showcase of user's study sets.
 
 #### redux

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom'
+import { Link as RouterLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
@@ -128,7 +129,7 @@ const Study = () => {
             >
                 <Box className={styles.ModalBox}>
                     <Typography variant="h4" component="h4">
-                        {modalMsg}
+                        {modalMsg}  
                     </Typography>
                 </Box>
             </Modal>
@@ -228,6 +229,18 @@ const Study = () => {
                             /> 
                         </Box>
                     </Box>)}
+
+                {/* Start Quiz button (only visible when viewing a study set & not editing) */}
+                {StudyID && 
+                <Button 
+                    variant="contained"
+                    component={RouterLink}
+                    to={`/home/quiz/${currentSet.id}`}
+                    sx={{ padding: '15px' }}
+                >
+                    Start Quiz
+                </Button>}
+
                 {/* {StudyID && JSON.stringify(currentSet.terms)} */}
             </Stack>
         </Box>

@@ -6,6 +6,7 @@ import Navigation from './Navigation'
 
 import Hub from '../hub/hub'
 import Study from '../study/study'
+import Quiz from '../quiz/quiz'
 import Profile from '../profile/profile'
 
 import styles from './Home.module.css'
@@ -24,6 +25,7 @@ const Home = () => {
                     <Route path="/study" element={<Study />}>
                         <Route path="/study/:StudyID" element={<Study />} />
                     </Route>
+                    <Route path="/quiz/:StudyID" element={<Quiz />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
                 {authorised && <Navigation />}
