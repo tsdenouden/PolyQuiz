@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
@@ -16,16 +17,23 @@ import styles from './Study.module.css'
 
 const Study = () => {
     const dispatch = useDispatch()
+    
+    // get ID of study set from route params: /home/study/:StudyID
+    // I use this ID for conditional rendering:
+    // if the ID doesn't exist, create a new study set & view the page in Edit mode.
+    // if the ID does exist, just find & view the study set with that ID
+    const { StudyID } = useParams()
 
+    // study sets & username
+    const studySets = useSelector(state => state.studySets.sets)
     const { username } = useSelector(state => state.user)
 
+    // current study set being viewed (the study set with the same ID as StudyID)
+    const [currentSet, setCurrentSet] = useState({})
+
+    // modal state
     const [modalShow, setModalShow] = useState(false)
     const [modalMsg, setModalMsg] = useState('')
-
-    const toggleModal = (visible, message) => {
-        setModalMsg(message)
-        setModalShow(visible)
-    }
 
     const [terms, setTerms] = useState([
         {
@@ -34,6 +42,21 @@ const Study = () => {
             def: '',
         }
     ])
+
+    useEffect(() => {
+        // if a StudyID has been passed via route params
+        // set current study set to the study set with that ID
+        if (StudyID) {
+            const getStudySet = studySets.filter(set => set.id === Number(StudyID))
+            setCurrentSet(getStudySet[0])
+        }
+    }, [StudyID, studySets])
+
+    // toggle modal visibility & set message
+    const toggleModal = (visible, message) => {
+        setModalMsg(message)
+        setModalShow(visible)
+    }
 
     // add term to study set
     const addTerm = () => {
@@ -95,7 +118,7 @@ const Study = () => {
     return (
         <Box className={styles.studyContainer}>
            <Typography variant="h4" component="h4" sx={{ marginBottom: '20px' }}>
-                New Study Set
+                {StudyID? `${currentSet.title}` : 'New Study Set'}
             </Typography>
             
             <Modal
@@ -111,32 +134,38 @@ const Study = () => {
             </Modal>
 
             <Stack component='form' noValidate onSubmit={submitStudySet}>
-                <TextField
-                    id="title"
-                    label="Title"
-                    variant="standard"
-                    required
-                    inputProps={{ maxLength: 20 }}
-                    sx={{ marginBottom: '10px' }}
-                />
-                <TextField
-                    id="description"
-                    label="Description"
-                    variant="standard"
-                    inputProps={{ maxLength: 50 }}
-                    sx={{ marginBottom: '50px' }}
-                />
-                <Typography variant="h5" component="h5">
-                    Terms
-                </Typography>
-                
-                {terms.map(term => 
+                {/* Edit/Create a new study set */}
+                {!StudyID && <Stack>
+                    <TextField
+                        id="title"
+                        label="Title"
+                        variant="standard"
+                        autoComplete="off"
+                        required
+                        inputProps={{ maxLength: 20 }}
+                        sx={{ marginBottom: '10px' }}
+                    />
+                    <TextField
+                        id="description"
+                        label="Description"
+                        variant="standard"
+                        autoComplete="off"
+                        inputProps={{ maxLength: 50 }}
+                        sx={{ marginBottom: '50px' }}
+                    />
+                    <Typography variant="h5" component="h5">
+                        Terms
+                    </Typography>
+                </Stack>}
+
+                {!StudyID && terms.map(term => 
                     <Box key={term.id} className={styles.termCard}>
                         <Box className={styles.cardTextField}>
                             <TextField 
                                     id={`term${term.id}`}
                                     label="Term" 
                                     variant="outlined" 
+                                    autoComplete="off"
                                     multiline 
                                     inputProps={{ maxLength: 50 }}
                             /> 
@@ -146,13 +175,15 @@ const Study = () => {
                                 id={`def${term.id}`}
                                 label="Definition" 
                                 variant="outlined" 
+                                autoComplete="off"
                                 multiline
                                 inputProps={{ maxLength: 100 }}
                             /> 
                         </Box>
                     </Box>
                 )}
-                <ButtonGroup orientation="vertical">
+
+                {!StudyID && <ButtonGroup orientation="vertical">
                     <Button 
                         onClick={addTerm} 
                         variant="contained" 
@@ -169,7 +200,35 @@ const Study = () => {
                     >
                         Save
                     </Button>
-                </ButtonGroup>
+                </ButtonGroup>}
+
+                {/* Viewing an already existing study set */}
+                {StudyID && currentSet.terms?.map(term => 
+                    <Box key={term.id} className={styles.termCard}>
+                        <Box className={styles.cardTextField}>
+                            <TextField 
+                                    id={`term${term.id}`}
+                                    value={term.term}
+                                    label="Term" 
+                                    variant="outlined" 
+                                    autoComplete="off"
+                                    multiline 
+                                    inputProps={{ maxLength: 50 }}
+                            /> 
+                        </Box>
+                        <Box className={styles.cardTextField}>
+                            <TextField 
+                                id={`def${term.id}`}
+                                value={term.def}
+                                label="Definition" 
+                                variant="outlined" 
+                                autoComplete="off"
+                                multiline
+                                inputProps={{ maxLength: 100 }}
+                            /> 
+                        </Box>
+                    </Box>)}
+                {/* {StudyID && JSON.stringify(currentSet.terms)} */}
             </Stack>
         </Box>
     )

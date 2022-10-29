@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 import Stack from '@mui/material/Stack'
@@ -5,6 +6,7 @@ import Card from "@mui/material/Card"
 import CardHeader from "@mui/material/CardHeader"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
+import Button from '@mui/material/Button'
 
 import styles from './studySets.module.css'
 
@@ -35,6 +37,14 @@ const StudySets = ({setProp, mustInclude}) => {
                             <Typography>
                                 {set.description}
                             </Typography>
+                            <Button 
+                                variant="contained"
+                                component={RouterLink}
+                                to={`/home/study/${set.id}`}
+                                sx={{ marginTop: '15px' }}
+                            >
+                                View Study Set
+                            </Button>
                         </CardContent>
                     </Card>
                 )}
