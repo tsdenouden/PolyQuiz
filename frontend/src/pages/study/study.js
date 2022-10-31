@@ -50,7 +50,7 @@ const Study = () => {
             }
            setTerms(terms.concat(newTerm))
         } else {
-            toggleModal(true, 'Maximum terms (10) reached.')
+            setModal(true, 'Maximum terms (10) reached.')
         }
     }
 
@@ -83,11 +83,11 @@ const Study = () => {
             terms: termObjs
         }
         dispatch(addSet(newStudySet))
-        toggleModal(true, '🎉 Success! Your study set has been published. 🎉')
+        setModal(true, '🎉 Success! Your study set has been published. 🎉')
     }
 
     // toggle modal visibility & set message
-    const toggleModal = (visible, message) => {
+    const setModal = (visible, message) => {
         setModalMsg(message)
         setModalShow(visible)
     }
@@ -99,13 +99,13 @@ const Study = () => {
                 setShow={setModalShow}
                 message={modalMsg}
             />
-            {StudyID? 
-                <ViewStudySet studySet={currentSet}/> : 
-                <EditStudySet 
+            {StudyID
+                ? <ViewStudySet studySet={currentSet} /> 
+                : <EditStudySet 
                     terms={terms} 
                     addTerm={addTerm} 
                     handleSubmit={submitStudySet}
-                />
+                  />
             }
         </Box>
     )
