@@ -4,29 +4,21 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
 
+import Box from '@mui/material/Box'
+
 import ViewStudySet from './components/ViewStudySet'
 import EditStudySet from './components/EditStudySet'
-
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Modal from "@mui/material/Modal"
+import NotificationModal from './components/NotificationModal'
 
 import styles from './Study.module.css'
 
 const Study = () => {
     const dispatch = useDispatch()
-    
-    const studySets = useSelector(state => state.studySets.sets)
-    const { username } = useSelector(state => state.user)
-
     const [modalShow, setModalShow] = useState(false)
     const [modalMsg, setModalMsg] = useState('')
 
-    // toggle modal visibility & set message
-    const toggleModal = (visible, message) => {
-        setModalMsg(message)
-        setModalShow(visible)
-    }
+    const studySets = useSelector(state => state.studySets.sets)
+    const { username } = useSelector(state => state.user)
 
     // if StudyID exists in the route params, just view the study set with that ID
     const { StudyID } = useParams()
@@ -56,7 +48,6 @@ const Study = () => {
                 term: '',
                 def: '',
             }
-
            setTerms(terms.concat(newTerm))
         } else {
             toggleModal(true, 'Maximum terms (10) reached.')
@@ -65,14 +56,12 @@ const Study = () => {
 
     const submitStudySet = (e) => {
         e.preventDefault()
-
         const data = new FormData(e.target)
         const formObj = Object.fromEntries(data.entries())
 
         // get terms & definitions
         const { title, description, ...formTerms } = formObj
         const termDef = Object.values(formTerms)
-
         let termObjs = []
         let id_count = 1 
 
@@ -82,38 +71,34 @@ const Study = () => {
                 term: termDef[i],
                 def: termDef[i+1]
             }
-
             termObjs.push(newTerm)
             id_count++
         }
-
         setTerms(termObjs)
 
         const newStudySet = {
-            title: formObj.title,
+            title: title,
             author: username,
-            description: formObj.description,
+            description: description,
             terms: termObjs
         }
-
         dispatch(addSet(newStudySet))
         toggleModal(true, '🎉 Success! Your study set has been published. 🎉')
     }
 
-    return (
-        <Box className={styles.studyContainer}>           
-            <Modal
-                open={modalShow}
-                onClose={() => { setModalShow(false) }}
-                className={styles.Modal}
-            >
-                <Box className={styles.ModalBox}>
-                    <Typography variant="h4" component="h4">
-                        {modalMsg}  
-                    </Typography>
-                </Box>
-            </Modal>
+    // toggle modal visibility & set message
+    const toggleModal = (visible, message) => {
+        setModalMsg(message)
+        setModalShow(visible)
+    }
 
+    return (
+        <Box className={styles.studyContainer}>
+            <NotificationModal 
+                show={modalShow}
+                setShow={setModalShow}
+                message={modalMsg}
+            />
             {StudyID? 
                 <ViewStudySet studySet={currentSet}/> : 
                 <EditStudySet 
