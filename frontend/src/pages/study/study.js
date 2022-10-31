@@ -16,7 +16,6 @@ import styles from './Study.module.css'
 const Study = () => {
     const dispatch = useDispatch()
     
-    // study sets & username
     const studySets = useSelector(state => state.studySets.sets)
     const { username } = useSelector(state => state.user)
 
@@ -30,7 +29,6 @@ const Study = () => {
     }
 
     // if StudyID exists in the route params, just view the study set with that ID
-    // /home/study/:StudyID
     const { StudyID } = useParams()
     const [currentSet, setCurrentSet] = useState({})
 
@@ -51,7 +49,6 @@ const Study = () => {
         }
     ])
 
-    // add term to new study set
     const addTerm = () => {
         if (terms.length <= 9) {
             const newTerm = {
@@ -66,20 +63,16 @@ const Study = () => {
         }
     }
 
-    // submit new study set
     const submitStudySet = (e) => {
         e.preventDefault()
 
         const data = new FormData(e.target)
         const formObj = Object.fromEntries(data.entries())
 
-        // create copy of formObj with title & description properties removed
+        // get terms & definitions
         const { title, description, ...formTerms } = formObj
-
-        // get all the terms & definitions
         const termDef = Object.values(formTerms)
 
-        // put each term & definition pair together
         let termObjs = []
         let id_count = 1 
 
@@ -94,10 +87,8 @@ const Study = () => {
             id_count++
         }
 
-        // update terms state
         setTerms(termObjs)
 
-        // create the study set
         const newStudySet = {
             title: formObj.title,
             author: username,
@@ -105,9 +96,7 @@ const Study = () => {
             terms: termObjs
         }
 
-        // save it
         dispatch(addSet(newStudySet))
-
         toggleModal(true, '🎉 Success! Your study set has been published. 🎉')
     }
 
