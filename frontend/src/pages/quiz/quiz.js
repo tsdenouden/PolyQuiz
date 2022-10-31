@@ -54,14 +54,14 @@ const Quiz = () => {
             const getStudySet = studySets.filter(set => set.id === Number(StudyID))
             setQuizSet(getStudySet[0])
 
-            // create 3 questions
-            let questions = []
+            // create a question for each term
+            let questionBank = []
 
             for (let i = 0; i < getStudySet[0].terms.length; i++) {
-                questions.push(createQuestion(getStudySet[0].terms))
+                questionBank.push(createQuestion(getStudySet[0].terms))
             }
 
-            setQuestions(questions)
+            setQuestions(questionBank)
         }
 
     }, [StudyID, studySets, createQuestion])
