@@ -5,7 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClassIcon from '@mui/icons-material/Class'
 import ForumIcon from '@mui/icons-material/Forum'
 
-import styles from './Home.module.css'
+import styles from '../Home.module.css'
 
 const Navigation = () => {
     return (

@@ -58,9 +58,9 @@ const Study = () => {
         e.preventDefault()
         const data = new FormData(e.target)
         const formObj = Object.fromEntries(data.entries())
+        const { title, description, ...formTerms } = formObj
 
         // get terms & definitions
-        const { title, description, ...formTerms } = formObj
         const termDef = Object.values(formTerms)
         let termObjs = []
         let id_count = 1 

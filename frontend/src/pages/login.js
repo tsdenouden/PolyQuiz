@@ -17,15 +17,15 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 
 const LandingPage = () => {
     const navigate = useNavigate()
-    const [passwordVisible, setPasswordVisibility] = useState(false)
     const dispatch = useDispatch()
-
+    const [passwordVisible, setPasswordVisibility] = useState(false)
+    
     // login
     const handleSubmit = (e) => {
         e.preventDefault()
-
         const username = e.target.user.value
         const password = e.target.password.value
+
         if (username.length >= 3 && password.length >= 3) {
             dispatch(updateName(username))
             dispatch(updatePassword(password))
