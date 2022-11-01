@@ -1,0 +1,39 @@
+.quizWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.quizTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quizForm {
+    align-items: center;
+    width: 90%
+}
+
+.questionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #332f30;
+    border-radius: 0.375rem;
+    width: 100%;
+    padding: 20px;
+    margin: 10px;
+}
+
+.questionRadio {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.submitButton {
+    margin-top: 10px;
+    padding: 15px 55px 15px 55px;
+}

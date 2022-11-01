@@ -15,24 +15,26 @@ const LoadingScreen = () => {
         const db_studysets=[
             {
                 id: 1,
-                title: 'Science',
-                author: 'PhysicsMan',
-                description: 'Cool study set about science.',
-                terms: ['Dynamics', 'Ohms Law', 'Velocity'],
-            },
-            {
-                id: 2,
-                title: 'Geography',
-                author: 'GeoMan',
-                description: 'Cool study set about geography.',
-                terms: ['USA', 'Continent', 'Equator'],
-            },
-            {
-                id: 3,
-                title: 'Computer Science',
-                author: 'CompSciMan',
-                description: 'Cool study set about computer science.',
-                terms: ['Mouse', 'Browser', 'Compiler'],
+                title: 'DebugQuiz',
+                author: 'TestMan',
+                description: 'Description test',
+                terms: [
+                    {
+                        id: 1,
+                        term: 'Cat',
+                        def: 'Animal'
+                    },
+                    {
+                        id: 2,
+                        term: 'Phone',
+                        def: 'Device'
+                    },
+                    {
+                        id: 3,
+                        term: 'Box',
+                        def: 'Container'
+                    },
+                ],
             },
         ]
         dispatch(initSet(db_studysets))
