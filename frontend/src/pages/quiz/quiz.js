@@ -73,7 +73,6 @@ const Quiz = () => {
         
         const userAnswers = Object.values(formObj)
         const realAnswers = questions.map(question => question.answer)
-
         let score=0
 
         for (let i = 0; i < userAnswers.length; i++) {
