@@ -3,13 +3,10 @@ import { useSelector } from "react-redux"
 import { useState, useEffect, useCallback } from "react"
 
 import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import FormControl from '@mui/material/FormControl'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+
+import QuizForm from './components/quizForm'
+import QuizResults from './components/quizResults'
 
 import styles from './Quiz.module.css'
 
@@ -18,8 +15,12 @@ const Quiz = () => {
     const studySets = useSelector(state => state.studySets.sets)
     const [quizSet, setQuizSet] = useState({})
     const [questions, setQuestions] = useState([])
+    const [quizCompleted, setQuizCompletion] = useState(false)
+    const [results, setResults] = useState([])
 
-    const createQuestion = useCallback(( answerIndex, terms) => {
+    // create multiple choice question
+    const createQuestion = useCallback((answerIndex, terms) => {
+        // add choices
         const createChoices = () => {
             let choices = []
             // add the real answer/definition to the list of choices
@@ -30,14 +31,18 @@ const Quiz = () => {
             if (terms.length <= 2) maxChoices = terms.length-1
 
             for (let i = 0; i < maxChoices; i++) {
+                // select random index
                 let random = randomInt(0, terms.length)
+                // choose a different index if the term at that index
+                // is either the answer or is already listed as a choice
                 while (random === answerIndex || choices.includes(terms[random].def)) {
                     random = randomInt(0, terms.length)
                 }
                 choices.push(terms[random].def)
             }
             
-            return choices
+            // put choices in random order
+            return shuffleArray(choices)
         }
 
         const newQuestion = {
@@ -54,12 +59,12 @@ const Quiz = () => {
         if (StudyID) {
             const getStudySet = studySets.filter(set => set.id === Number(StudyID))
             setQuizSet(getStudySet[0])
-            const quizTerms = getStudySet[0].terms
+            // put terms in random order
+            const quizTerms = shuffleArray(getStudySet[0].terms)
 
             // create a question for each term
             let questionBank = []
-
-            for (let i = 0; i < getStudySet[0].terms.length; i++) {
+            for (let i = 0; i < quizTerms.length; i++) {
                 questionBank.push(createQuestion(i, quizTerms))
             }
             setQuestions(questionBank)
@@ -71,18 +76,50 @@ const Quiz = () => {
         const data = new FormData(e.target)
         const formObj = Object.fromEntries(data.entries())
         
+        // compare user's inpput with the real answers
         const userAnswers = Object.values(formObj)
         const realAnswers = questions.map(question => question.answer)
         let score=0
 
+        // keep track of which questions the user got right & wrong
+        let correct = []
+        let wrong = []
+
         for (let i = 0; i < userAnswers.length; i++) {
-            if (userAnswers[i] === realAnswers[i]) score+=1
+            if (userAnswers[i] === realAnswers[i]) {
+                score+=1
+                correct.push(questions[i].text)
+            } else {
+                wrong.push(questions[i].text)
+            }
+        }
+
+        // final results
+        const userResults = {
+            grade: Math.trunc((score/realAnswers.length)*100),
+            correctAnswers: correct,
+            wrongAnswers: wrong
         }
         
-        const grade = (score/realAnswers.length)*100
-        console.log(grade)
+        // save user's results & set quiz to complete to render
+        // the results page
+        setQuizCompletion(true)
+        setResults(userResults)
     }
 
+    // durstenfeld shuffle algorithm
+    const shuffleArray = (originalArray) => {
+        const array = originalArray.slice(0)
+        
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+
+        return array
+    }
+
+    // get random integer
     const randomInt = (min, max) => {
         min = Math.ceil(min)
         max = Math.floor(max)
@@ -100,37 +137,13 @@ const Quiz = () => {
                     Made by {quizSet.author}
                 </Typography>
             </Box>
-            <Stack component="form" onSubmit={submitQuiz} className={styles.quizForm}>
-                <FormControl className={styles.formControl} fullWidth>
-                {questions.map((question, index) =>
-                    <Box key={index} className={styles.questionCard}>
-                        <Typography variant="h5">
-                            {question.text}
-                        </Typography>
-                        <RadioGroup 
-                            name={`radioButtons${question.text}`}
-                            className={styles.questionRadio}
-                        >
-                            {question.choices.map((choice, index) =>
-                                <FormControlLabel
-                                    key={index}
-                                    value={choice}
-                                    label={choice}
-                                    control={<Radio />}
-                                />
-                            )}
-                        </RadioGroup>
-                    </Box>
-                )}
-                </FormControl>
-                <Button 
-                    type="submit" 
-                    variant="contained"
-                    className={styles.submitButton}
-                >
-                    Submit
-                </Button>
-            </Stack>
+            {quizCompleted
+                ? <QuizResults userResults={results} />
+                : <QuizForm 
+                    questions={questions} 
+                    submitQuiz={submitQuiz} 
+                  />
+            }
         </Box>
     )
 }
