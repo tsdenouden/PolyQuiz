@@ -1,12 +1,22 @@
+import { useNavigate } from 'react-router-dom'
+
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CancelIcon from '@mui/icons-material/Cancel'
 
 import styles from '../Quiz.module.css'
 
 const QuizResults = ({userResults}) => {
+    const navigate = useNavigate()
+
+    // redirect to hub/explore page
+    const viewHub = () => {
+        navigate('/home/hub')
+    }
+
     return (
         <>
         <Box className={styles.resultsCard}>
@@ -27,8 +37,8 @@ const QuizResults = ({userResults}) => {
 
         <Stack sx={{ width: '30%' }}>
             {userResults.correctAnswers
-            && userResults.correctAnswers.map(correct =>
-                <Box className={styles.answer}>
+            && userResults.correctAnswers.map((correct, index) =>
+                <Box key={index} className={styles.answer}>
                     <CheckCircleIcon />
                     <Typography 
                         variant="h6"
@@ -40,8 +50,8 @@ const QuizResults = ({userResults}) => {
             )}
             
             {userResults.wrongAnswers
-            && userResults.wrongAnswers.map(wrong =>
-                <Box className={styles.answer}>
+            && userResults.wrongAnswers.map((wrong, index) =>
+                <Box key={index} className={styles.answer}>
                     <CancelIcon color="primary" />
                     <Typography 
                         variant="h6" 
@@ -52,6 +62,13 @@ const QuizResults = ({userResults}) => {
                 </Box>
             )}
         </Stack>
+        <Button 
+            variant="contained"
+            sx={{ marginTop: '20px' }}
+            onClick={viewHub}
+        >
+            Explore other study sets
+        </Button>
         </>
     )
 }

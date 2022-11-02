@@ -11,8 +11,11 @@ import styles from '../Study.module.css'
 const ViewStudySet = ({studySet}) => {
     return (
         <>
-            <Typography variant="h4" component="h4" sx={{ marginBottom: '20px' }}>
+            <Typography variant="h4" sx={{ marginBottom: '12px' }}>
                 {studySet.title}
+            </Typography>
+            <Typography variant="h6">
+                    Made by {studySet.author}
             </Typography>
 
             <Stack>

@@ -11,7 +11,11 @@ import styles from '../Quiz.module.css'
 
 const QuizForm = ({questions, submitQuiz}) => {
     return (
-        <Stack component="form" onSubmit={submitQuiz} className={styles.quizForm}>
+        <Stack 
+            component="form" 
+            onSubmit={submitQuiz} 
+            className={styles.quizForm}
+        >
             <FormControl className={styles.formControl} fullWidth>
             {questions.map((question, index) =>
                 <Box key={index} className={styles.questionCard}>
@@ -37,7 +41,10 @@ const QuizForm = ({questions, submitQuiz}) => {
             <Button 
                 type="submit" 
                 variant="contained"
-                className={styles.submitButton}
+                sx={{
+                    marginTop: '10px',
+                    padding: '15px 55px 15px 55px'
+                }}
             >
                 Submit
             </Button>

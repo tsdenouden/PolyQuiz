@@ -14,22 +14,22 @@ const Quiz = () => {
     const { StudyID } = useParams()
     const studySets = useSelector(state => state.studySets.sets)
     const [quizSet, setQuizSet] = useState({})
-    const [questions, setQuestions] = useState([])
     const [quizCompleted, setQuizCompletion] = useState(false)
+    const [questions, setQuestions] = useState([])
     const [results, setResults] = useState([])
 
-    // create multiple choice question
+    // create a multiple choice question using terms from a study set
     const createQuestion = useCallback((answerIndex, terms) => {
-        // add choices
         const createChoices = () => {
             let choices = []
             // add the real answer/definition to the list of choices
             choices.push(terms[answerIndex].def)
 
-            // add wrong answers
+            // check how many more choices can be added
             let maxChoices = 2
             if (terms.length <= 2) maxChoices = terms.length-1
 
+            // add wrong answers
             for (let i = 0; i < maxChoices; i++) {
                 // select random index
                 let random = randomInt(0, terms.length)
@@ -59,6 +59,7 @@ const Quiz = () => {
         if (StudyID) {
             const getStudySet = studySets.filter(set => set.id === Number(StudyID))
             setQuizSet(getStudySet[0])
+
             // put terms in random order
             const quizTerms = shuffleArray(getStudySet[0].terms)
 
@@ -76,7 +77,7 @@ const Quiz = () => {
         const data = new FormData(e.target)
         const formObj = Object.fromEntries(data.entries())
         
-        // compare user's inpput with the real answers
+        // compare user's input with the real answers
         const userAnswers = Object.values(formObj)
         const realAnswers = questions.map(question => question.answer)
         let score=0

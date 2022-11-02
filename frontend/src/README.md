@@ -2,7 +2,6 @@ frontend built with React, Redux & MaterialUI
 
 folder structure:
 
-# src
 * Index.js - renders react app. sets up browser router, redux provider & MUI theme
 * App.js - routes for / and /home/*
 * theme.js - MUI theme
