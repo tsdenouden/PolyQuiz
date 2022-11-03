@@ -1,5 +1,3 @@
-frontend built with React, Redux & MaterialUI
-
 folder structure:
 
 * Index.js - renders react app. sets up browser router, redux provider & MUI theme
@@ -9,7 +7,7 @@ folder structure:
 #### pages
 * landing.js - landing page, didn't do anything here yet
 * login.js - sign up/in page. After signing in, redirects user to /load (load.js) to fetch study terms.
-* load.js - Fetches latest study terms in the background while playing a loading screen. Redirects user to home/hub afterwards.
+* fetchStudy.js - Fetches study sets from database via API. Plays a loading screen while fetching. Redirects user to home/hub upon receiving the study sets.
 * home.js - routes for hub, profile & study pages with a navigation bar to travel between those pages.
 * hub.js (home/hub) - this is the timeline/media page showing the latest or trending study sets.
 * study.js (home/study) - study set viewer & editor page.
@@ -24,3 +22,6 @@ folder structure:
 #### components
 * redirect.js - redirect user to landing page
 * studySets.js - renders an array of study sets as a list of card components
+
+#### services
+* studyservice.js - module used to communicate with the backend

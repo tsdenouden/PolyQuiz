@@ -1,9 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 
 // initialise express app
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 let db_studysets=[
     {

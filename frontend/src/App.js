@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 
 import LandingPage from './pages/landing'
 import LoginPage from './pages/login'
-import LoadingScreen from './pages/load'
+import FetchStudySets from './pages/fetchStudySets'
 import Home from './pages/home/home'
 import Redirect from './components/redirect'
 
@@ -21,7 +21,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/load" element={authorised? <LoadingScreen />: <Redirect />} />
+      <Route path="/load" element={authorised? <FetchStudySets />: <Redirect />} />
       <Route path="/home/*" element={authorised? <Home />: <Redirect />} />
     </Routes>
   )

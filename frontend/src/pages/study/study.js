@@ -10,6 +10,8 @@ import ViewStudySet from './components/ViewStudySet'
 import EditStudySet from './components/EditStudySet'
 import NotificationModal from './components/NotificationModal'
 
+import studyService from '../../services/studyservice'
+
 import styles from './Study.module.css'
 
 const Study = () => {
@@ -77,13 +79,25 @@ const Study = () => {
         setTerms(termObjs)
 
         const newStudySet = {
+            id: studySets.length+1,
             title: title,
             author: username,
             description: description,
             terms: termObjs
         }
-        dispatch(addSet(newStudySet))
-        setModal(true, '🎉 Success! Your study set has been published. 🎉')
+       
+        // send post request to API
+        // to add this new study set to MongoDB database
+        studyService
+            .addStudySet(newStudySet)
+            .then(result => {
+                // add study set to state
+                dispatch(addSet(newStudySet))
+                setModal(true, '🎉 Success! Your study set has been published. 🎉')
+            })
+            .catch(err => {
+                setModal(true, `Publishing failed: ${err}`)
+            })
     }
 
     // toggle modal visibility & set message

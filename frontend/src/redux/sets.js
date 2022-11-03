@@ -10,13 +10,14 @@ export const setSlice = createSlice({
             state.sets = action.payload
         },
         addSet: (state, action) => {
-            const newSet = structuredClone(action.payload)
-            newSet.id = state.sets.length+1
-            state.sets = state.sets.concat(newSet)
+            state.sets = state.sets.concat(action.payload)
+        },
+        deleteSet: (state, action) => {
+            state.sets = state.sets.filter(set => set.id !== action.payload)
         }
     }
 })
 
-export const { addSet, initSet } = setSlice.actions
+export const { addSet, initSet, deleteSet } = setSlice.actions
 
 export default setSlice.reducer
