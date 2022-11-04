@@ -11,6 +11,8 @@ import styles from './Hub.module.css'
 
 
 const Hub = () => {
+    window.scrollTo(0, 0)
+    
     // query study sets
     const [query, setQuery] = useState('')
 

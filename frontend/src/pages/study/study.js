@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
+import { v4 as uuidv4 } from 'uuid'
 
 import Box from '@mui/material/Box'
 
@@ -15,6 +16,8 @@ import studyService from '../../services/studyservice'
 import styles from './Study.module.css'
 
 const Study = () => {
+    window.scrollTo(0, 0)
+    
     const dispatch = useDispatch()
     const [modalShow, setModalShow] = useState(false)
     const [modalMsg, setModalMsg] = useState('')
@@ -28,7 +31,7 @@ const Study = () => {
 
     useEffect(() => {
         if (StudyID) {
-            const getStudySet = studySets.filter(set => set.id === Number(StudyID))
+            const getStudySet = studySets.filter(set => set.id === StudyID)
             setCurrentSet(getStudySet[0])
         }
     }, [StudyID, studySets])
@@ -79,7 +82,7 @@ const Study = () => {
         setTerms(termObjs)
 
         const newStudySet = {
-            id: studySets.length+1,
+            id: uuidv4(),
             title: title,
             author: user.name,
             avatar: user.picture,

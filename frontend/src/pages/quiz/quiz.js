@@ -11,6 +11,8 @@ import QuizResults from './components/quizResults'
 import styles from './Quiz.module.css'
 
 const Quiz = () => {
+    window.scrollTo(0, 0)
+
     const { StudyID } = useParams()
     const studySets = useSelector(state => state.studySets.sets)
     const [quizSet, setQuizSet] = useState({})
@@ -57,7 +59,7 @@ const Quiz = () => {
         // if a StudyID has been passed via route params
         // make quiz use the study set with that StudyID
         if (StudyID) {
-            const getStudySet = studySets.filter(set => set.id === Number(StudyID))
+            const getStudySet = studySets.filter(set => set.id === StudyID)
             setQuizSet(getStudySet[0])
 
             // put terms in random order
@@ -106,6 +108,7 @@ const Quiz = () => {
         // the results page
         setQuizCompletion(true)
         setResults(userResults)
+        window.scrollTo(0, 0)
     }
 
     // durstenfeld shuffle algorithm

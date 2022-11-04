@@ -10,6 +10,8 @@ import StudySets from '../../components/studySets/studySets'
 import styles from './Profile.module.css'
 
 const Profile = () => {
+    window.scrollTo(0, 0)
+    
     const { user } = useSelector(state => state.user)
 
     return (

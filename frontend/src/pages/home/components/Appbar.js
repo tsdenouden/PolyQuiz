@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Box from '@mui/material/Box'
@@ -11,8 +10,6 @@ import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
 import { styled } from '@mui/material/styles'
 import Badge from '@mui/material/Badge'
-
-import styles from '../Home.module.css'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -46,14 +43,19 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Appbar = () => {
     const { user } = useSelector(state => state.user)
 
-    const navigate = useNavigate()
-
     const LogOutUser = () => {
         window.location.reload()
     }
 
     return (
-        <AppBar position="static" className={styles.Appbar}>
+        <AppBar 
+            position="static" 
+            sx={{
+                position: "fixed",
+                top: "0",
+                zIndex: "1"
+            }}
+        >
             <Container maxWidth="x1">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1 }}>

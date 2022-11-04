@@ -23,11 +23,14 @@ const StudySets = ({setProp, mustInclude}) => {
     let studySetFilter = studySets.filter(set => set)
     switch (setProp) {
         case 'author':
-            studySetFilter = studySets.filter(set => set.author === mustInclude)
+            studySetFilter = studySets.filter(set => 
+                set.author === mustInclude
+            ).reverse()
             break
         case 'title':
             studySetFilter = studySets.filter(set => 
-                set.title.toLowerCase().includes(mustInclude.toLowerCase()))
+                set.title.toLowerCase().includes(mustInclude.toLowerCase())
+            ).reverse()
             break
         default:   
             break

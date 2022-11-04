@@ -20,8 +20,6 @@ const LandingPage = () => {
     const LogInUser = (token) => {
         const userInfo = jwt_decode(token)
         if (userInfo) {
-            console.log(userInfo)
-            console.log(userInfo.picture)
             dispatch(updateUser(userInfo))
             navigate('/load')
         } 

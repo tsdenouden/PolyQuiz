@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ClassIcon from '@mui/icons-material/Class'
 import ForumIcon from '@mui/icons-material/Forum'
-
-import styles from '../Home.module.css'
 
 const Navigation = () => {
     const [value, setValue] = useState(0)

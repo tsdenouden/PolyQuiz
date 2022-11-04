@@ -10,14 +10,18 @@ import Study from '../study/study'
 import Quiz from '../quiz/quiz'
 import Profile from '../profile/profile'
 
-import styles from './Home.module.css'
-
-
 const Home = () => {
     return (
         <Box>
             <Appbar />
-            <Grid container component="main" className={styles.HomeView}>
+            <Grid 
+                container 
+                component="main" 
+                sx={{
+                    height: '100vh',
+                    marginTop: '60px'
+                }}
+            >
                 <Grid item xs={12}>
                     <Routes>
                         <Route path="/hub" element={<Hub />} />
