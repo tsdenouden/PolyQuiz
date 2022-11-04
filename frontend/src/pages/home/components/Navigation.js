@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
@@ -8,9 +9,15 @@ import ForumIcon from '@mui/icons-material/Forum'
 import styles from '../Home.module.css'
 
 const Navigation = () => {
+    const [value, setValue] = useState(0)
+
     return (
         <BottomNavigation 
             showLabels 
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue)
+            }}
             className={styles.BottomNav}
         >
             <BottomNavigationAction

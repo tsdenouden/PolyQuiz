@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { initSet } from '../redux/sets'
@@ -15,8 +15,8 @@ const FetchStudySets = () => {
 
     const [error, setError] = useState('')
 
-    // fetch study sets from API
-    studyService
+    useEffect(() => {
+        studyService
         .getAll()
         .then(studySets => {
             dispatch(initSet(studySets))
@@ -26,6 +26,7 @@ const FetchStudySets = () => {
             console.log("Can't fetch study sets from API: ", err)
             setError(err)
         })
+    }, [dispatch , navigate])
 
     return (
         <Box 

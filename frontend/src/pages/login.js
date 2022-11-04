@@ -1,38 +1,28 @@
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
+
 import { useDispatch } from 'react-redux'
-import { updateName, updatePassword } from '../redux/user'
+import { updateUser } from '../redux/user'
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import InputAdornment from '@mui/material/InputAdornment'
-import VisibilityIcon from '@mui/icons-material/Visibility'
 
 const LandingPage = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const [passwordVisible, setPasswordVisibility] = useState(false)
-    
-    // login
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const username = e.target.user.value
-        const password = e.target.password.value
 
-        if (username.length >= 3 && password.length >= 3) {
-            dispatch(updateName(username))
-            dispatch(updatePassword(password))
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    // save user details to state
+    const LogInUser = (token) => {
+        const userInfo = jwt_decode(token)
+        if (userInfo) {
+            dispatch(updateUser(userInfo))
             navigate('/load')
-        } else {
-            alert('Invalid credentials')
-        }
+        } 
     }
 
     return (
@@ -62,12 +52,9 @@ const LandingPage = () => {
                         variant="h2" 
                         component="h2"
                     >
-                        test
+                        PolyQuiz
                     </Typography>
                     <Stack
-                        component='form'
-                        noValidate
-                        onSubmit={handleSubmit}
                         spacing={2} 
                         sx={{
                             textAlign: 'center',
@@ -75,41 +62,15 @@ const LandingPage = () => {
                             width: '80%'
                         }}
                     >
-                        <TextField 
-                            id="user"
-                            label="Username"
-                            variant="outlined"
-                            autoComplete="off"
-                            margin="normal"
-                            autoFocus
-                            required
-                            fullWidth
-                        />
-                        <TextField 
-                            id="password"
-                            label="Password"
-                            variant="outlined"
-                            type={passwordVisible? "text": "password"}
-                            autoComplete="current-password"
-                            margin="normal"
-                            required
-                            fullWidth
-                            InputProps={{
-                                endAdornment: 
-                                <InputAdornment position="end">
-                                    <VisibilityIcon onClick={() => {setPasswordVisibility(!passwordVisible)}} />
-                                </InputAdornment>,
-                            }}
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
                         <Box style={{ marginTop: '20px' }}>
-                            <Button type="submit" variant="contained" sx={{ marginRight: '1.5em' }}>
-                                Sign Up
-                            </Button>
-                            <Button type="submit" variant="outlined">Log In</Button>
+                            <GoogleLogin 
+                                onSuccess={credentialResponse => {
+                                    LogInUser(credentialResponse.credential)
+                                }}
+                                onError={() => {
+                                    console.log('Login Failed')
+                                }}
+                            />
                         </Box>
                     </Stack>
                 </Box>

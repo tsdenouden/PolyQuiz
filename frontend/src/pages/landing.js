@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
+import Box from '@mui/system/Box'
 import Button from '@mui/material/Button'
 
 const LandingPage = () => {
@@ -10,11 +11,13 @@ const LandingPage = () => {
     }
 
     return (
-        <div>
-            <Button variant="contained" onClick={LogIn}>
+        <Box>
+            <Button
+                onClick={LogIn}
+            >
                 Log In
             </Button>
-        </div>
+        </Box>
     )
 }
 

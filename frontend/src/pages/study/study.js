@@ -20,7 +20,7 @@ const Study = () => {
     const [modalMsg, setModalMsg] = useState('')
 
     const studySets = useSelector(state => state.studySets.sets)
-    const { username } = useSelector(state => state.user)
+    const { user } = useSelector(state => state.user)
 
     // if StudyID exists in the route params, just view the study set with that ID
     const { StudyID } = useParams()
@@ -81,7 +81,8 @@ const Study = () => {
         const newStudySet = {
             id: studySets.length+1,
             title: title,
-            author: username,
+            author: user.name,
+            avatar: user.picture,
             description: description,
             terms: termObjs
         }

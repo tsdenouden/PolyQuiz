@@ -9,21 +9,21 @@ import CardHeader from "@mui/material/CardHeader"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import Button from '@mui/material/Button'
+import Avatar from "@mui/material/Avatar"
 
 import studyService from '../../services/studyservice'
 
 import styles from './studySets.module.css'
 
 const StudySets = ({setProp, mustInclude}) => {
-    const { username } = useSelector(state => state.user)
+    const { user } = useSelector(state => state.user)
     const studySets = useSelector(state => state.studySets.sets)
     const dispatch = useDispatch()
 
     let studySetFilter = studySets.filter(set => set)
     switch (setProp) {
         case 'author':
-            studySetFilter = studySets.filter(set => 
-                set.author.toLowerCase().includes(mustInclude.toLowerCase()))
+            studySetFilter = studySets.filter(set => set.author === mustInclude)
             break
         case 'title':
             studySetFilter = studySets.filter(set => 
@@ -56,6 +56,11 @@ const StudySets = ({setProp, mustInclude}) => {
                             subheader={set.author}
                         />
                         <CardContent>
+                            <Avatar 
+                                alt={set.author}
+                                src={set.avatar}
+                                sx={{ marginBottom: '5px' }}
+                            />
                             <Typography>
                                 {set.description}
                             </Typography>
@@ -71,7 +76,7 @@ const StudySets = ({setProp, mustInclude}) => {
                                 >
                                     View Study Set
                                 </Button>
-                                {set.author===username &&
+                                {set.author===user.name &&
                                 <Button
                                     onClick={() => {deleteById(set.id)}}
                                     variant="contained"
