@@ -1,13 +1,9 @@
+.Appbar {
+    position: fixed;
+    top: 0;
+}
+
 .HomeView {
     height: 100vh;
-}
-
-.BottomNav {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-}
-
-.BottomNavLink {
-    text-decoration: none;
+    margin-top: 60px;
 }

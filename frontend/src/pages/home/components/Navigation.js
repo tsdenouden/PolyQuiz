@@ -10,6 +10,11 @@ import styles from '../Home.module.css'
 
 const Navigation = () => {
     const [value, setValue] = useState(0)
+    // position: fixed;
+    // bottom: 0px;
+    // width: 100%;
+    // height: 10%;
+    // padding: 20px;
 
     return (
         <BottomNavigation 
@@ -18,28 +23,31 @@ const Navigation = () => {
             onChange={(event, newValue) => {
                 setValue(newValue)
             }}
-            className={styles.BottomNav}
+            sx={{
+                position: "fixed",
+                bottom: "0px",
+                width: "100%",
+                height: "10%",
+                padding: "20px"
+            }}
         >
             <BottomNavigationAction
                 component={Link} 
                 to='/home/hub'
                 label='Hub' 
-                icon={<ForumIcon />} 
-                className={styles.BottomNavLink}
+                icon={<ForumIcon fontSize="large" />} 
             />
             <BottomNavigationAction 
                 component={Link}
                 to='/home/study'
                 label='Study' 
-                icon={<ClassIcon />} 
-                className={styles.BottomNavLink}
+                icon={<ClassIcon fontSize="large" />} 
             />
             <BottomNavigationAction 
                 component={Link}
                 to='/home/profile'
                 label='Profile' 
-                icon={<AccountCircleIcon />} 
-                className={styles.BottomNavLink}
+                icon={<AccountCircleIcon fontSize="large" />} 
             />
         </BottomNavigation>
     )
