@@ -19,30 +19,30 @@ const QuizResults = ({userResults}) => {
 
     return (
         <>
-        <Box className={styles.resultsCard}>
+        <Box className={styles.containerResults}>
             <Typography variant="h3">
                 <CheckCircleIcon 
                     fontSize="large"
                     color="primary"
-                    sx={{ marginRight: '10px' }}
+                    sx={{ mr: '10px' }}
                 />
                 {userResults.grade}%
             </Typography>
         </Box>
         {/* {JSON.stringify(userResults)} */}
 
-        <Typography variant="h4" sx={{ marginTop: '30px' }}>
+        <Typography variant="h4" sx={{ mt: '30px' }}>
             Results
         </Typography> 
 
         <Stack sx={{ width: '30%' }}>
             {userResults.correctAnswers
             && userResults.correctAnswers.map((correct, index) =>
-                <Box key={index} className={styles.answer}>
+                <Box key={index} className={styles.containerAnswer}>
                     <CheckCircleIcon />
                     <Typography 
                         variant="h6"
-                        sx={{ marginLeft: '7px' }}
+                        sx={{ ml: '7px' }}
                     >
                         {correct}
                     </Typography>
@@ -51,11 +51,11 @@ const QuizResults = ({userResults}) => {
             
             {userResults.wrongAnswers
             && userResults.wrongAnswers.map((wrong, index) =>
-                <Box key={index} className={styles.answer}>
+                <Box key={index} className={styles.containerAnswer}>
                     <CancelIcon color="primary" />
                     <Typography 
                         variant="h6" 
-                        sx={{ marginLeft: '7px' }}
+                        sx={{ ml: '7px' }}
                     >
                         {wrong}
                     </Typography>
@@ -64,7 +64,7 @@ const QuizResults = ({userResults}) => {
         </Stack>
         <Button 
             variant="contained"
-            sx={{ marginTop: '20px' }}
+            sx={{ mt: '20px' }}
             onClick={viewHub}
         >
             Explore other study sets

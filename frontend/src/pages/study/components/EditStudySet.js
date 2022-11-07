@@ -11,11 +11,9 @@ import styles from '../Study.module.css'
 const EditStudySet = ({terms, addTerm, handleSubmit}) => {
     return (
         <>
-            <Header 
-                size="h4"
-                text="New Study Set"
-                margin="20px"
-            />
+            <Typography variant="h4" sx={{ m: '20px' }}>
+                New Study Set
+            </Typography>
             <Stack component='form' noValidate onSubmit={handleSubmit}>
                 <Stack>
                     <EditText 
@@ -28,11 +26,9 @@ const EditStudySet = ({terms, addTerm, handleSubmit}) => {
                         max={50}
                         margin="50px"
                     />
-                    <Header 
-                        size="h5"
-                        text="Terms"
-                        margin="5px"
-                    />
+                    <Typography variant="h5" sx={{ m: '5px' }}>
+                        Terms
+                    </Typography>
                 </Stack>
                 {terms.map(term => 
                     <EditTerm key={term.id} term={term}/>
@@ -40,14 +36,6 @@ const EditStudySet = ({terms, addTerm, handleSubmit}) => {
                 <AddTerm onAdd={addTerm} />
             </Stack> 
         </>
-    )
-}
-
-const Header = ({size, text, margin}) => {
-    return (
-        <Typography variant={size} component={size} sx={{ marginBottom: margin }}>
-                {text}
-        </Typography>
     )
 }
 
@@ -60,15 +48,15 @@ const EditText = ({name, max, margin}) => {
             autoComplete="off"
             required
             inputProps={{ maxLength: max }}
-            sx={{ marginBottom: margin }}
+            sx={{ mb: margin }}
         />
     )
 }
 
 const EditTerm = ({term}) => {
     return (
-        <Box className={styles.termCard}>
-            <Box className={styles.cardTextField}>
+        <Box className={styles.card}>
+            <Box className={styles.input}>
                 <TextField 
                     name={`term${term.id}`}
                     label="Term" 
@@ -78,7 +66,7 @@ const EditTerm = ({term}) => {
                     inputProps={{ maxLength: 50 }}
                 /> 
             </Box>
-            <Box className={styles.cardTextField}>
+            <Box className={styles.input}>
                 <TextField 
                     name={`def${term.id}`}
                     label="Definition" 
@@ -99,9 +87,9 @@ const AddTerm = ({onAdd}) => {
                 onClick={onAdd} 
                 variant="contained" 
                 color="secondary" 
-                sx={{ padding: '20px' }}
+                sx={{ p: '20px' }}
             >
-                <AddCircleIcon sx={{ marginRight: '5px' }} />
+                <AddCircleIcon sx={{ mr: '5px' }} />
                 Add Term
             </Button>
             <Button 

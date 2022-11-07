@@ -11,7 +11,7 @@ import styles from '../Study.module.css'
 const ViewStudySet = ({studySet}) => {
     return (
         <>
-            <Typography variant="h4" sx={{ marginBottom: '12px' }}>
+            <Typography variant="h4" sx={{ mb: '12px' }}>
                 {studySet.title}
             </Typography>
             <Typography variant="h6">
@@ -20,7 +20,7 @@ const ViewStudySet = ({studySet}) => {
 
             <Stack>
                 {studySet.terms?.map(term => 
-                    <Box key={term.id} className={styles.termCard}>
+                    <Box key={term.id} className={styles.card}>
                         <ViewTerm value={term.term} label="Term" /> 
                         <ViewTerm value={term.def} label="Definition" /> 
                     </Box>
@@ -33,7 +33,7 @@ const ViewStudySet = ({studySet}) => {
 
 const ViewTerm = ({id, value, label}) => {
     return (
-        <Box className={styles.cardTextField}>
+        <Box className={styles.input}>
             <TextField
                 value={value}
                 label={label} 
@@ -53,7 +53,7 @@ const QuizLink = ({StudyID}) => {
             variant="contained"
             component={RouterLink}
             to={`/home/quiz/${StudyID}`}
-            sx={{ padding: '15px' }}
+            sx={{ p: '15px' }}
             >
                 Start Quiz
             </Button>

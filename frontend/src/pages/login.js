@@ -4,81 +4,74 @@ import jwt_decode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../redux/user'
 import { useNavigate } from 'react-router-dom'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const LandingPage = () => {
+import loginImage from '../assets/pexels.jpg'
 
+const LoginPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    useDocumentTitle('Login')
 
     // save user details to state
     const LogInUser = (token) => {
         const userInfo = jwt_decode(token)
         if (userInfo) {
             dispatch(updateUser(userInfo))
-            navigate('/load')
+            navigate('/load')   
         } 
     }
 
     return (
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid 
+            container 
+            component="main" 
+            sx={{ height: '100vh' }}
+        >
             <Grid 
                 item
                 xs={false}
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: 'url(https://source.unsplash.com/random)',
+                    backgroundImage: `url(${loginImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                 }}
             />
             <Grid item xs={12} sm={8} md={5} component={Paper}>
-                <Box
+                <Stack
                     sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '100vh',
                     }}
                 >
                     <Typography 
-                        variant="h2" 
-                        component="h2"
+                        variant="h2"
+                        sx={{ mb: '30px' }}
                     >
                         PolyQuiz
                     </Typography>
-                    <Stack
-                        spacing={2} 
-                        sx={{
-                            textAlign: 'center',
-                            marginTop: '30px',
-                            width: '80%'
+                    <GoogleLogin 
+                        onSuccess={credentialResponse => {
+                            LogInUser(credentialResponse.credential)
                         }}
-                    >
-                        <Box style={{ marginTop: '20px' }}>
-                            <GoogleLogin 
-                                onSuccess={credentialResponse => {
-                                    LogInUser(credentialResponse.credential)
-                                }}
-                                onError={() => {
-                                    console.log('Login Failed')
-                                }}
-                                size="large"
-                                width="100%"
-                            />
-                        </Box>
-                    </Stack>
-                </Box>
+                        onError={() => {
+                            console.log('Login Failed')
+                        }}
+                        size="large"
+                        width="100%"
+                    />
+                </Stack>
             </Grid>
         </Grid>
     )
 }
 
-export default LandingPage
+export default LoginPage

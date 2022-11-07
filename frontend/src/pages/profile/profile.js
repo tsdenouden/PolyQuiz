@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -11,12 +12,13 @@ import styles from './Profile.module.css'
 
 const Profile = () => {
     window.scrollTo(0, 0)
+    useDocumentTitle('Profile')
     
     const { user } = useSelector(state => state.user)
 
     return (
-        <Box className={styles.profileContainer}>
-            <Box className={styles.profileView}>
+        <Box sx={{ mt: '60px' }}>
+            <Box className={styles.container}>
                 <Avatar 
                     alt={user.name} 
                     src={user.picture} 
@@ -29,11 +31,6 @@ const Profile = () => {
                 <Typography variant="h4">
                     {user.name}'s study sets
                 </Typography> 
-                {/* <Box className={styles.profileActions}>
-                    <Button variant="contained">
-                        Share study sets
-                    </Button>
-                </Box> */}
                 <StudySets setProp='author' mustInclude={user.name} />
             </Box>
         </Box>

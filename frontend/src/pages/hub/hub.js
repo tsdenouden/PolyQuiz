@@ -1,4 +1,5 @@
 import { useState } from "react"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 import Box from '@mui/material/Box'
 import Typography from "@mui/material/Typography"
@@ -12,6 +13,7 @@ import styles from './Hub.module.css'
 
 const Hub = () => {
     window.scrollTo(0, 0)
+    useDocumentTitle('Explore')
     
     // query study sets
     const [query, setQuery] = useState('')
@@ -21,7 +23,7 @@ const Hub = () => {
     }
 
     return (
-        <Box className={styles.hubContainer}>
+        <Box className={styles.container}>
             <Typography variant="h2" component="h2">
                 Explore
             </Typography>
@@ -29,7 +31,7 @@ const Hub = () => {
                 Latest Study Sets
             </Typography>
         
-            <Box className={styles.hubSearch}>
+            <Box className={styles.search}>
                 <SearchIcon sx={{ mr:1, my: 1.5 }}/>
                 <TextField 
                     id="search"

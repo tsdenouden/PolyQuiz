@@ -14,17 +14,17 @@ const QuizForm = ({questions, submitQuiz}) => {
         <Stack 
             component="form" 
             onSubmit={submitQuiz} 
-            className={styles.quizForm}
+            className={styles.form}
         >
-            <FormControl className={styles.formControl} fullWidth>
+            <FormControl fullWidth>
             {questions.map((question, index) =>
-                <Box key={index} className={styles.questionCard}>
+                <Box key={index} className={styles.card}>
                     <Typography variant="h5">
                         {question.text}
                     </Typography>
                     <RadioGroup 
                         name={`radioButtons${question.text}`}
-                        className={styles.questionRadio}
+                        className={styles.cardRadio}
                     >
                         {question.choices.map((choice, index) =>
                             <FormControlLabel
@@ -42,8 +42,8 @@ const QuizForm = ({questions, submitQuiz}) => {
                 type="submit" 
                 variant="contained"
                 sx={{
-                    marginTop: '10px',
-                    padding: '15px 55px 15px 55px'
+                    mt: '10px',
+                    p: '15px 55px 15px 55px'
                 }}
             >
                 Submit

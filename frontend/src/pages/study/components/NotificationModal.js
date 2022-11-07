@@ -9,10 +9,10 @@ const NotificationModal = ({show, setShow, message}) => {
         <Modal
             open={show}
             onClose={() => { setShow(false) }}
-            className={styles.Modal}
+            className={styles.modal}
             >
-            <Box className={styles.ModalBox}>
-                <Typography variant="h4" component="h4">
+            <Box className={styles.blockModal}>
+                <Typography variant="h4">
                     {message}  
                 </Typography>
             </Box>

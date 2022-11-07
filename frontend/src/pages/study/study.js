@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
 import { v4 as uuidv4 } from 'uuid'
+import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 import Box from '@mui/material/Box'
 
@@ -17,6 +18,7 @@ import styles from './Study.module.css'
 
 const Study = () => {
     window.scrollTo(0, 0)
+    useDocumentTitle('Study')
     
     const dispatch = useDispatch()
     const [modalShow, setModalShow] = useState(false)
@@ -111,7 +113,7 @@ const Study = () => {
     }
 
     return (
-        <Box className={styles.studyContainer}>
+        <Box className={styles.container}>
             <NotificationModal 
                 show={modalShow}
                 setShow={setModalShow}

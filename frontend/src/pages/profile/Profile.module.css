@@ -1,28 +1,7 @@
-.profileContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 60px;
-}
-
-.profileView {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.profileEdit {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-}
-
-.profileActions {
-    display: flex;
-    margin-top: 12px;
 }

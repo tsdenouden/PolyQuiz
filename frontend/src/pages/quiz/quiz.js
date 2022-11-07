@@ -1,20 +1,23 @@
 import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { useState, useEffect, useCallback } from "react"
+import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-import QuizForm from './components/quizForm'
-import QuizResults from './components/quizResults'
+import QuizForm from './components/QuizForm'
+import QuizResults from './components/QuizResults'
 
 import styles from './Quiz.module.css'
 
 const Quiz = () => {
     window.scrollTo(0, 0)
+    useDocumentTitle('Quiz')
 
     const { StudyID } = useParams()
     const studySets = useSelector(state => state.studySets.sets)
+    
     const [quizSet, setQuizSet] = useState({})
     const [quizCompleted, setQuizCompletion] = useState(false)
     const [questions, setQuestions] = useState([])
@@ -131,9 +134,9 @@ const Quiz = () => {
     }
 
     return (
-        <Box className={styles.quizWrapper}>
+        <Box className={styles.container}>
             {/* { JSON.stringify(questions) } */}
-            <Box className={styles.quizTitle}>
+            <Box className={styles.header}>
                 <Typography variant="h4">
                     {quizSet.title}
                 </Typography>

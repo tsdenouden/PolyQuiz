@@ -25,3 +25,6 @@ folder structure:
 
 #### services
 * studyservice.js - module used to communicate with the backend
+
+#### assets
+* pexels.jpg - https://www.pexels.com/photo/modern-art-1910225/ Photo by @bruthethe on pexels
