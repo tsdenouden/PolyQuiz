@@ -40,8 +40,6 @@ npm run build:ui
 * MongoDB
 * Render
 
-
-
 # Completed
 * Hub page
 * Profile page
