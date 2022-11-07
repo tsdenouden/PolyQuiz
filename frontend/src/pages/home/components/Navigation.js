@@ -9,12 +9,7 @@ import ForumIcon from '@mui/icons-material/Forum'
 
 const Navigation = () => {
     const [value, setValue] = useState(0)
-    // position: fixed;
-    // bottom: 0px;
-    // width: 100%;
-    // height: 10%;
-    // padding: 20px;
-
+    
     return (
         <BottomNavigation 
             showLabels 

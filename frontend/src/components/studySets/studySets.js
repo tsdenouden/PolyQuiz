@@ -20,6 +20,7 @@ const StudySets = ({setProp, mustInclude}) => {
     const studySets = useSelector(state => state.studySets.sets)
     const dispatch = useDispatch()
 
+    // apply chosen filter to list of study sets
     let studySetFilter = studySets.filter(set => set)
     switch (setProp) {
         case 'author':
@@ -51,9 +52,9 @@ const StudySets = ({setProp, mustInclude}) => {
     }
 
     return (
-        <Stack className={styles.studyStack}>
+        <Stack className={styles.stack}>
                 {studySetFilter.map(set =>
-                    <Card key={set.id} className={styles.studyCard}>
+                    <Card key={set.id} className={styles.card}>
                         <CardHeader 
                             title={set.title}
                             subheader={set.author}
@@ -73,8 +74,8 @@ const StudySets = ({setProp, mustInclude}) => {
                                     component={RouterLink}
                                     to={`/home/study/${set.id}`}
                                     sx={{ 
-                                        marginTop: '15px',
-                                        marginRight: '10px'
+                                        mt: '15px',
+                                        mr: '10px'
                                     }}
                                 >
                                     View Study Set
@@ -83,7 +84,7 @@ const StudySets = ({setProp, mustInclude}) => {
                                 <Button
                                     onClick={() => {deleteById(set.id)}}
                                     variant="contained"
-                                    sx={{ marginTop: '15px' }}
+                                    sx={{ mt: '15px' }}
                                 >
                                     Delete
                                 </Button>}

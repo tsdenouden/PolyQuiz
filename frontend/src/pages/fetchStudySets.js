@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { initSet } from '../redux/sets'
 
-import Box from "@mui/material/Box"
+import Stack from "@mui/material/Stack"
 import CircularProgress from "@mui/material/CircularProgress"
 import Typography from "@mui/material/Typography"
 
@@ -16,6 +16,7 @@ const FetchStudySets = () => {
     const [error, setError] = useState('')
 
     useEffect(() => {
+        // fetch study sets from API
         studyService
         .getAll()
         .then(studySets => {
@@ -29,21 +30,19 @@ const FetchStudySets = () => {
     }, [dispatch , navigate])
 
     return (
-        <Box 
-            sx={{ 
-                display: 'flex', 
-                flexDirection: 'column',
-                justifyContent: 'center', 
+        <Stack 
+            sx={{
+                justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh' 
             }}
         >
-            <CircularProgress color="inherit" sx={{ marginBottom: '10px' }}/>
+            <CircularProgress color="inherit" sx={{ mb: '10px' }}/>
             <Typography>
                 Fetching latest study sets...
                 {error}
             </Typography>
-        </Box>
+        </Stack>
     )
 }
 

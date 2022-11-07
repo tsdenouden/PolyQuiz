@@ -14,7 +14,7 @@ const EditStudySet = ({terms, addTerm, handleSubmit}) => {
             <Typography variant="h4" sx={{ m: '20px' }}>
                 New Study Set
             </Typography>
-            <Stack component='form' noValidate onSubmit={handleSubmit}>
+            <Stack component='form' onSubmit={handleSubmit}>
                 <Stack>
                     <EditText 
                         name="Title"
@@ -63,6 +63,7 @@ const EditTerm = ({term}) => {
                     variant="outlined" 
                     autoComplete="off"
                     multiline 
+                    required
                     inputProps={{ maxLength: 50 }}
                 /> 
             </Box>
@@ -73,6 +74,7 @@ const EditTerm = ({term}) => {
                     variant="outlined" 
                     autoComplete="off"
                     multiline
+                    required
                     inputProps={{ maxLength: 100 }}
                 /> 
             </Box>

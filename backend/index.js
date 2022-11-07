@@ -4,7 +4,6 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const StudySet = require('./models/studysets')
 
-// initialise express app
 const app = express()
 app.use(express.static('build'))
 app.use(express.json())
