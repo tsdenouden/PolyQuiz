@@ -9,31 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-let db_studysets=[
-    {
-        id: 1,
-        title: 'DebugQuiz',
-        author: 'TestMan',
-        description: 'Description test',
-        terms: [
-            {
-                id: 1,
-                term: 'Cat',
-                def: 'Animal'
-            },
-            {
-                id: 2,
-                term: 'Phone',
-                def: 'Device'
-            },
-            {
-                id: 3,
-                term: 'Box',
-                def: 'Container'
-            },
-        ],
-    },
-]
+let db_studysets=[]
 
 app.get('/api/studysets', (request, response) => {
     response.json(db_studysets)

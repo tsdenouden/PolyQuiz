@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import LandingPage from './pages/landing'
+import LandingPage from './pages/landingpage/landing'
 import LoginPage from './pages/login'
 import FetchStudySets from './pages/fetchStudySets'
 import Home from './pages/home/home'
