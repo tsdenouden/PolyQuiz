@@ -5,10 +5,11 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 
 import styles from '../Study.module.css'
 
-const EditStudySet = ({terms, addTerm, handleSubmit}) => {
+const EditStudySet = ({terms, addTerm, delTerm, handleSubmit}) => {
     return (
         <>
             <Typography variant="h4" sx={{ m: '20px' }}>
@@ -33,7 +34,7 @@ const EditStudySet = ({terms, addTerm, handleSubmit}) => {
                 {terms.map(term => 
                     <EditTerm key={term.id} term={term}/>
                 )}
-                <AddTerm onAdd={addTerm} />
+                <AddTerm onAdd={addTerm} onDel={delTerm} />
             </Stack> 
         </>
     )
@@ -82,7 +83,7 @@ const EditTerm = ({term}) => {
     )
 }
 
-const AddTerm = ({onAdd}) => {
+const AddTerm = ({onAdd, onDel}) => {
     return (
         <ButtonGroup orientation="vertical">
             <Button 
@@ -93,6 +94,15 @@ const AddTerm = ({onAdd}) => {
             >
                 <AddCircleIcon sx={{ mr: '5px' }} />
                 Add Term
+            </Button>
+            <Button 
+                onClick={onDel} 
+                variant="outlined" 
+                color="primary" 
+                sx={{ p: '20px' }}
+            >
+                <RemoveCircleIcon sx={{ mr: '5px' }} />
+                Delete Last Term
             </Button>
             <Button 
                 type="submit" 

@@ -59,6 +59,10 @@ const Study = () => {
         }
     }
 
+    const deleteTerm = () => {
+        setTerms(terms.slice(0, -1))
+    }
+
     const submitStudySet = (e) => {
         e.preventDefault()
         const data = new FormData(e.target)
@@ -121,6 +125,7 @@ const Study = () => {
                 : <EditStudySet 
                     terms={terms} 
                     addTerm={addTerm} 
+                    delTerm={deleteTerm}
                     handleSubmit={submitStudySet}
                   />
             }

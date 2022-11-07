@@ -56,9 +56,9 @@ npm run build:ui
 * Quiz results page
 * REST API
 * Functions for fetching data from API extracted into a separate file
-* Google OAuth2.0 Login
-* Show user's avatar in profile page & in their study sets
-* AppBar showing logo, avatar with animated badge & logout button
+* Google OAuth2.0 Login & take Google Account details by decoding JWT token from response & saving user info to redux global state
+* Show user's Google profile picture in profile page & in their study sets
+* AppBar showing logo, Google profile picture with animated badge & logout button
 * Sort study sets by latest in Hub/Explore page
 * Add login page photo
 * Landing page
