@@ -5,10 +5,11 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Container from '@mui/material/Container'
 import Stack from '@mui/system/Stack'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
+
 import StyledBadge from './StyledBadge'
+import Logo from '../../../components/logo'
 
 const Appbar = () => {
     const { user } = useSelector(state => state.user)
@@ -29,9 +30,7 @@ const Appbar = () => {
             <Container maxWidth="x1">
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Typography variant="h4 ">
-                            PolyQuiz
-                        </Typography>
+                        <Logo size="h4" />
                     </Box>
                     <Stack direction="row" spacing={2}>
                         <StyledBadge

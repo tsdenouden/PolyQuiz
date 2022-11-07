@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addSet } from "../../redux/sets"
-import { v4 as uuidv4 } from 'uuid'
 import useDocumentTitle from '../../hooks/useDocumentTitle'
 
 import Box from '@mui/material/Box'
@@ -17,7 +16,6 @@ import studyService from '../../services/studyservice'
 import styles from './Study.module.css'
 
 const Study = () => {
-    window.scrollTo(0, 0)
     useDocumentTitle('Study')
     
     const dispatch = useDispatch()
@@ -84,7 +82,6 @@ const Study = () => {
         setTerms(termObjs)
 
         const newStudySet = {
-            id: uuidv4(),
             title: title,
             author: user.name,
             avatar: user.picture,
@@ -98,7 +95,7 @@ const Study = () => {
             .addStudySet(newStudySet)
             .then(result => {
                 // add study set to state
-                dispatch(addSet(newStudySet))
+                dispatch(addSet(result))
                 setModal(true, '🎉 Success! Your study set has been published. 🎉')
             })
             .catch(err => {

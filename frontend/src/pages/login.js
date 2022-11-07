@@ -6,11 +6,12 @@ import { updateUser } from '../redux/user'
 import { useNavigate } from 'react-router-dom'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 
+import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
 
+import Logo from '../components/logo'
 import loginImage from '../assets/pexels-abstract.jpg'
 
 const LoginPage = () => {
@@ -58,12 +59,9 @@ const LoginPage = () => {
                         height: '100vh',
                     }}
                 >
-                    <Typography 
-                        variant="h2"
-                        sx={{ mb: '30px' }}
-                    >
-                        PolyQuiz
-                    </Typography>
+                    <Box sx={{ mb: '30px' }}>
+                        <Logo size="h2" />
+                    </Box>
                     <GoogleLogin 
                         onSuccess={credentialResponse => {
                             LogInUser(credentialResponse.credential)
