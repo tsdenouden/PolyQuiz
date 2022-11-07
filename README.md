@@ -68,3 +68,4 @@ npm run build:ui
 * Backend now serves static files from frontend production build
 * Custom hook for setting document titles
 * form validation 
+* deleting terms from study set
