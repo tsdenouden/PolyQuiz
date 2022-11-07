@@ -1,10 +1,13 @@
 # PolyQuiz
 
-PolyQuiz is an app that turns your notes into randomly generated quizzes.
+PolyQuiz turns your notes into randomly generated quizzes. Explore the latest
+quizzes made by other students & showcase your own quizzes in your profile.
+
+It's a fullstack web application built with the MERN stack.
 
 # Getting started
 
-Run npm install in the backend folder to install everything from package.json
+Run npm install in the backend folder to install everything from package.json.
 ```bash
 npm install
 ```
@@ -14,7 +17,7 @@ Then to run the development server:
 npm run dev
 ```
 
-To create a new production build of the frontend and serve it from the backend as static files
+To create a new production build of the frontend and serve it from the backend as static files:
 ```bash
 npm run build:ui
 ```
@@ -25,7 +28,7 @@ npm run build:ui
 * Explore - the latest study sets made by other students.
 * Showcase - all study sets you make will be featured on your profile page.
 
-# tech stack
+# Tech stack
 * React.js
 * Redux Toolkit
 * Material UI
@@ -51,8 +54,9 @@ npm run build:ui
 * disabled text fields while viewing a study set
 * Made quizzes random, wrote algorithm to shuffle questions & answers around
 * Quiz results page
-* REST API & extracted functions for fetching data from api into separate file
-* Google OAuth
+* REST API
+* Functions for fetching data from API extracted into a separate file
+* Google OAuth2.0 Login
 * Show user's avatar in profile page & in their study sets
 * AppBar showing logo, avatar with animated badge & logout button
 * Sort study sets by latest in Hub/Explore page
