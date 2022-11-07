@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-import loginImage from '../assets/pexels.jpg'
+import loginImage from '../assets/pexels-abstract.jpg'
 
 const LoginPage = () => {
     const dispatch = useDispatch()
@@ -44,7 +44,13 @@ const LoginPage = () => {
                     backgroundPosition: 'center'
                 }}
             />
-            <Grid item xs={12} sm={8} md={5} component={Paper}>
+            <Grid 
+                item 
+                xs={12} 
+                sm={8} 
+                md={5} 
+                component={Paper}
+            >
                 <Stack
                     sx={{
                         justifyContent: 'center',

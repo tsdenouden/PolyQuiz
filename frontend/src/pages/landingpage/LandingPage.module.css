@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.headerContentImg {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    user-select: none;
+}
+
+.headerContent {
+    position: relative;
+    margin-top: 125px;
+    margin-bottom: 70px;
+}
+
+.stack {
+    justify-content: center;
+    padding-top: 30px; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: #1c1819;
+    padding: 50px;
+}
