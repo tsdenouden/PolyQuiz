@@ -1,3 +1,5 @@
+# PolyQuiz
+
 PolyQuiz is an app that turns your notes into randomly generated quizzes.
 
 # Getting started
