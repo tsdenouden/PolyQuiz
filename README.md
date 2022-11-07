@@ -5,6 +5,9 @@ quizzes made by other students & showcase your own quizzes in your profile.
 
 It's a fullstack web application built with the MERN stack.
 
+Try out the latest version of PolyQuiz:
+https://polyquiz.onrender.com/
+
 # Getting started
 
 Run npm install in the backend folder to install everything from package.json.
@@ -33,8 +36,11 @@ npm run build:ui
 * Redux Toolkit
 * Material UI
 * Express
-* MongoDB
 * Node.js
+* MongoDB
+* Render
+
+
 
 # Completed
 * Hub page
@@ -69,3 +75,4 @@ npm run build:ui
 * Custom hook for setting document titles
 * form validation 
 * deleting terms from study set
+* deployed web service with render.com
