@@ -1,4 +1,4 @@
-PolyQuiz is an app that turns your notes into randomly generated quizzes.
+WIP: PolyQuiz is an app that turns your notes into randomly generated quizzes.
 
 # Features
 * Create study sets - write down terms you've learnt in class & their definitions.
